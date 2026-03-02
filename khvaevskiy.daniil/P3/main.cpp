@@ -91,7 +91,7 @@ int main(int argc, char* argv[])
     }
     else
     {
-      matrix = (int*)malloc(rows * cols * sizeof(int));
+      matrix = static_cast<int*>(malloc(rows * cols * sizeof(int)));
       if (!matrix)
       {
         infile.close();

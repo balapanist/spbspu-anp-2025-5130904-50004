@@ -17,7 +17,6 @@ void Khvaevskii::readMatrix(std::ifstream& file, int* matrix, int rows, int cols
   {
     throw std::runtime_error("File is not open");
   }
- 
   for (size_t i = 0; i < rows; i++)
   {
     for (size_t j = 0; j < cols; j++)

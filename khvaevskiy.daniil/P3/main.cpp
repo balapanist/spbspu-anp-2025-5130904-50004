@@ -50,8 +50,8 @@ int main(int argc, char* argv[])
       std::cerr << "Error reading matrix dimensions from file\n";
       return 2;
     }
-    rows = temp_rows;
-    cols = temp_cols;
+    rows = static_cast<int>(temp_rows);
+    cols = static_cast<int>(temp_cols);
 
     if (rows < 0 || cols < 0)
     {
@@ -91,7 +91,7 @@ int main(int argc, char* argv[])
     }
     else
     {
-      matrix = static_cast<int*>(malloc(rows * cols * sizeof(int)));
+      matrix = (int*)malloc(rows * cols * sizeof(int));
       if (!matrix)
       {
         infile.close();
@@ -110,12 +110,18 @@ int main(int argc, char* argv[])
       outfile << result << "\n";
 
       Khvaevskii::freeMatrix(matrix);
+      matrix = nullptr;
     }
   }
   catch (const std::exception& e)
   {
     infile.close();
     outfile.close();
+    if (!is_fixed && matrix)
+    {
+      Khvaevskii::freeMatrix(matrix);
+      matrix = nullptr;
+    }
     std::cerr << e.what() << "\n";
     return 2;
   }

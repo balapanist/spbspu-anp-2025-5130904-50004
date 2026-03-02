@@ -91,7 +91,7 @@ int main(int argc, char* argv[])
     }
     else
     {
-      matrix = (int*)malloc(rows * cols * sizeof(int));
+      matrix = static_cast<int*>(malloc(rows * cols * sizeof(int)));
       if (!matrix)
       {
         infile.close();
@@ -117,6 +117,7 @@ int main(int argc, char* argv[])
   {
     infile.close();
     outfile.close();
+
     if (!is_fixed && matrix)
     {
       Khvaevskii::freeMatrix(matrix);

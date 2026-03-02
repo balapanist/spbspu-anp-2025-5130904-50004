@@ -19,7 +19,7 @@ void Khvaevskii::readMatrix(std::ifstream& file, int* matrix, int rows, int cols
   }
   for (size_t i = 0; i < static_cast<size_t>(rows); i++)
   {
-    for (size_t j = 0; j < static_cast(cols); j++)
+    for (size_t j = 0; j < static_cast<size_t>(cols); j++)
     {
       long long temp_val;
       if (!(file >> temp_val))

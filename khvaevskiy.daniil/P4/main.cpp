@@ -14,6 +14,14 @@ int main()
   }
 
   std::cin.getline(input, max_size);
+
+  if (std::cin.fail() || std::cin.eof() || std::strlen(input) == 0)
+  {
+    std::cerr << "Error: no input provided\n";
+    delete[] input;
+    return 1;
+  }
+
   size_t len = std::strlen(input);
 
   char* result = new (std::nothrow) char[max_size];
@@ -35,4 +43,6 @@ int main()
 
   delete[] result;
   delete[] input;
+
+  return 0;
 }

@@ -35,4 +35,5 @@ int main()
 
   delete[] result;
   delete[] input;
+
 }

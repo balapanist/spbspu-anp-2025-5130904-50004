@@ -11,4 +11,5 @@ namespace Khvaevskii
   int countSaddlePoints(int* matrix, int rows, int cols);
   bool isValidNumber(long long num);
 }
+
 #endif

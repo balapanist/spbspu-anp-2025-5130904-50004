@@ -2,6 +2,7 @@
 #include <fstream>
 #include <cstdlib>
 #include <limits>
+#include <stdexcept>
 #include "func.h"
 
 int main( int argc, char* argv[] )
@@ -71,10 +72,20 @@ int main( int argc, char* argv[] )
     infile.open( argv[2] );
     infile >> temp_rows >> temp_cols;
 
-    Khvaevskii::readMatrix( infile, fixed_matrix, rows, cols );
+    try
+    {
+      Khvaevskii::readMatrix( infile, fixed_matrix, rows, cols );
 
-    long long result = Khvaevskii::maxSumDiagonal( fixed_matrix, rows, cols );
-    outfile << result << "\n";
+      long long result = Khvaevskii::maxSumDiagonal( fixed_matrix, rows, cols );
+      outfile << result << "\n";
+    }
+    catch ( const std::exception& e )
+    {
+      infile.close();
+      outfile.close();
+      std::cerr << e.what() << "\n";
+      return 2;
+    }
   }
   else
   {
@@ -100,12 +111,12 @@ int main( int argc, char* argv[] )
 
       free( matrix );
     }
-    catch ( ... )
+    catch ( const std::exception& e )
     {
       free( matrix );
       infile.close();
       outfile.close();
-      std::cerr << "Error reading matrix elements\n";
+      std::cerr << e.what() << "\n";
       return 2;
     }
   }

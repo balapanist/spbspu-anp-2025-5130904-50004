@@ -3,6 +3,7 @@
 #include <fstream>
 #include <cstdlib>
 #include <limits>
+#include <stdexcept>
 
 void Khvaevskii::readMatrix( std::ifstream& file, int* matrix, size_t rows, size_t cols )
 {
@@ -11,7 +12,10 @@ void Khvaevskii::readMatrix( std::ifstream& file, int* matrix, size_t rows, size
     for ( size_t j = 0; j < cols; j++ )
     {
       long long temp_val;
-      file >> temp_val;
+      if ( !( file >> temp_val ) )
+      {
+        throw std::runtime_error( "Error reading matrix element" );
+      }
       matrix[i * cols + j] = static_cast< int >( temp_val );
     }
   }

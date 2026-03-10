@@ -5,10 +5,9 @@
 
 namespace Khvaevskii
 {
-  void readMatrix(std::ifstream& file, int* matrix, int rows, int cols);
-  void freeMatrix(int* matrix);
-  long long maxSumDiagonal(int* matrix, int rows, int cols);
-  int countSaddlePoints(int* matrix, int rows, int cols);
-  bool isValidNumber(long long num);
+  void readMatrix( std::ifstream& file, int* matrix, size_t rows, size_t cols );
+  long long maxSumDiagonal( int* matrix, size_t rows, size_t cols );
+  int countSaddlePoints( int* matrix, size_t rows, size_t cols );
 }
+
 #endif
